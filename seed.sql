@@ -14,9 +14,7 @@ INSERT INTO Role (name)
 VALUES ("Human Resource Coordinator");
 
 INSERT INTO Role (name)
-VALUES ("Accountant");I
+VALUES ("Accountant");
 
 INSERT INTO Role (name)
 VALUES ("Cashier");
-
-
