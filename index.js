@@ -4,7 +4,7 @@ const mysql = require("mysql");
 
 const connection = mysql.createConnection({
     multipleStatements: true,
-    host: "127.0.0.1",
+    host: "localhost",
 
     // Your port; if not 3306
     port: 3306,
