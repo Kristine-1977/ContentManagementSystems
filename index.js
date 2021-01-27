@@ -1,8 +1,10 @@
-var mysql = require("mysql");
-var inquirer = require("inquirer");
+const inquirer = require("inquirer");
+const mysql = require("mysql");
+//const consoleTable = require("console.Table")
 
-var connection = mysql.createConnection({
-    host: "localhost",
+const connection = mysql.createConnection({
+    multipleStatements: true,
+    host: "127.0.0.1",
 
     // Your port; if not 3306
     port: 3306,
@@ -11,55 +13,76 @@ var connection = mysql.createConnection({
     user: "root",
 
     // Your password
-    password: "",
-    database: "top_songsDB"
+    password: "#257976QXZIcjkg",
+    database: "EmployeeDB"
 });
 
 connection.connect(function (err) {
+    console.log('hello');
     if (err) throw err;
-    runSearch();
+   // runSearch();
 });
 
 function runSearch() {
     inquirer
         .prompt({
-            name: "action",
-            type: "rawlist",
+            name: "choice",
+            type: "list",
             message: "What would you like to do?",
             choices: [
-                "Find songs by artist",
-                "Find all artists who appear more than once",
-                "Find data within a specific range",
-                "Search for a specific song",
-                "Find artists with a top song and top album in the same year"
+                "Find employees by role",
+                "Find employees by department",
+                "Find employees by name",
+                "What employee would you like to remove",
+                "View employees by manager",
+                "Update employee role",
+                "Update manager role",
+                "Add employee",
+                "Update employee role"
             ]
         })
         .then(function (answer) {
             switch (answer.action) {
-                case "Find songs by artist":
-                    artistSearch();
+                case "Find employee by role":
+                    employeeSearch();
                     break;
 
-                case "Find all artists who appear more than once":
-                    multiSearch();
+                case "Find employees by department":
+                    employeeSearch();
                     break;
 
-                case "Find data within a specific range":
-                    rangeSearch();
+                case "Find employee by name":
+                    employeeSearch();
                     break;
 
-                case "Search for a specific song":
-                    songSearch();
+                case "What employee would you like to remove":
+                    employeeSearch();
                     break;
 
-                case "Find artists with a top song and top album in the same year":
-                    songAndAlbumSearch();
+                case "View employees by manager":
+                    employeeSearch();
+                    break;
+
+                case "Update employee role":
+                    employeeSearch();
+                    break;
+
+                case "Update manager role":
+                    employeeSearch();
+                    break;
+
+                case "Add employee":
+                    employeeSearch();
+                    break;
+
+                case "Update employee role":
+                    employeeSearch();
                     break;
             }
         });
 }
-
-function artistSearch() {
+/**
+ function artistSearch() {
     inquirer
         .prompt({
             name: "artist",
@@ -78,10 +101,10 @@ function artistSearch() {
 }
 
 function multiSearch() {
-    var query = "SELECT artist FROM top5000 GROUP BY artist HAVING count(*) > 1";
+    var query = "SELECT employee FROM top5000 GROUP BY employee HAVING count(*) > 1";
     connection.query(query, function (err, res) {
         for (var i = 0; i < res.length; i++) {
-            console.log(res[i].artist);
+            console.log(res[i].employee);
         }
         runSearch();
     });
@@ -191,4 +214,4 @@ function songAndAlbumSearch() {
                 runSearch();
             });
         });
-}
+}*/
